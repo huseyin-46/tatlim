@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Kalp</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#111;
+}
+
+.kalp{
+    position:relative;
+    width:120px;
+    height:120px;
+    background:red;
+    transform:rotate(-45deg);
+    animation:at 1s infinite alternate;
+}
+
+.kalp::before,
+.kalp::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    background:red;
+    border-radius:50%;
+}
+
+.kalp::before{
+    top:-60px;
+    left:0;
+}
+
+.kalp::after{
+    left:60px;
+    top:0;
+}
+
+@keyframes at{
+    0%{
+        transform:rotate(-45deg) scale(1);
+    }
+    100%{
+        transform:rotate(-45deg) scale(1.1);
+    }
+}
+</style>
+</head>
+
+<body>
+<div>
+
+<div class="kalp"></div>
+  <p> <font face="Iceland" size="5" color="pink"> <br><br> ~ TEŞEKKÜRRRR EDERİMMMM ~
+</div>
+</body>
+</html>
