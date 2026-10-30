@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIKMA TEKLİFİ</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+        h2 {
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+            margin-left: 100px;
+        }
+        .no {
+            background-color: #e74c3c;
+            color: white;
+            position: absolute;
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <img src="images (1).jpeg" alt="CIKMA TEKLİFİ">
+    <h2>Allah'ın emri peygamberin kabriyle kalbine girmek istiyorum?</h2>
+    <div class="buttons">
+        <button class="yes" onclick="window.location.href='teskur.html'">Evet</button>
+        <button class="no" id="noButton">Hayır</button>
+    </div>
+
+    <script>
+        const noButton = document.getElementById("noButton");
+
+        function moveButton() {
+            // Butonun ekrandan kopmaması için güvenli piksel aralığı (-150 ile 150 pikser arası)
+            const x = (Math.random() - 0.5) * 300;
+            const y = (Math.random() - 0.5) * 300;
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // Bilgisayar için fareyle üzerine gelince
+        noButton.addEventListener("mouseover", moveButton);
+        // Telefonlar için dokunulduğunda kaçması için
+        noButton.addEventListener("touchstart", (e) => {
+            e.preventDefault(); // Tıklanmasını engeller ve kaçmasını sağlar
+            moveButton();
+        });
+    </script>
+</body>
+</html>
