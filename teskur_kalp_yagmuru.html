@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sana olan kalbim</title>
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:#111;
+}
+
+/* Arka planda yukarıdan aşağıya yağan kalpler */
+.kalp-yagmuru{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.kalp-tanesi{
+    position:absolute;
+    top:-50px;
+    left:var(--x);
+    font-size:var(--boyut);
+    opacity:0;
+    filter:drop-shadow(0 0 5px rgba(255,80,150,.35));
+    animation:kalp-yag  linear var(--sure) var(--gecikme) infinite;
+    will-change:transform, opacity;
+}
+
+@keyframes kalp-yag{
+    0%{
+        transform:translate3d(0,-50px,0) rotate(0deg);
+        opacity:0;
+    }
+    10%{opacity:.9;}
+    85%{opacity:.8;}
+    100%{
+        transform:translate3d(var(--kayma),110vh,0) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.kalp{
+    position:relative;
+    width:120px;
+    height:120px;
+    background:red;
+    transform:rotate(-45deg);
+    animation:at 1s infinite alternate;
+}
+
+.kalp::before,
+.kalp::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    background:red;
+    border-radius:50%;
+}
+
+.kalp::before{
+    top:-60px;
+    left:0;
+}
+
+.kalp::after{
+    left:60px;
+    top:0;
+}
+
+@keyframes at{
+    0%{
+        transform:rotate(-45deg) scale(1);
+    }
+    100%{
+        transform:rotate(-45deg) scale(1.1);
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="kalp-yagmuru" aria-hidden="true"></div>
+
+<div align="center" style="position:relative; z-index:1;">
+
+<div class="kalp"></div>
+<div>  <p> <font face="Iceland" size="5" color="pink"> <br><br> ~ TEŞEKKÜRRRR EDERİMMMM ~</div>
+
+<script>
+const yagmur = document.querySelector('.kalp-yagmuru');
+const kalpler = ['💝', '💖', '❤️‍🔥'];
+
+function kalpEkle() {
+    const tane = document.createElement('span');
+    tane.className = 'kalp-tanesi';
+    tane.textContent = kalpler[Math.floor(Math.random() * kalpler.length)];
+
+    tane.style.setProperty('--x', Math.random() * 100 + 'vw');
+    tane.style.setProperty('--boyut', (14 + Math.random() * 18) + 'px');
+    tane.style.setProperty('--sure', (6 + Math.random() * 7) + 's');
+    tane.style.setProperty('--gecikme', (Math.random() * -12) + 's');
+    tane.style.setProperty('--kayma', (Math.random() * 100 - 50) + 'px');
+
+    yagmur.appendChild(tane);
+    tane.addEventListener('animationiteration', () => {
+        tane.style.setProperty('--x', Math.random() * 100 + 'vw');
+        tane.style.setProperty('--boyut', (14 + Math.random() * 18) + 'px');
+        tane.style.setProperty('--kayma', (Math.random() * 100 - 50) + 'px');
+    });
+}
+
+for (let i = 0; i < 28; i++) kalpEkle();
+</script>
+</body>
+</html>
